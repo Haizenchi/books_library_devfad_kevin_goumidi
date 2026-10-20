@@ -48,7 +48,7 @@ class CategoryRepository
             $stmt->bindValue(1, $name, \PDO::PARAM_STR);
             $stmt->execute();
             $data = $stmt->fetch(\PDO::FETCH_ASSOC);
-            if (!$data) {
+            if (isset($data) && $data != false) {
                 $category = Category::hydrate($data);
             }
         } catch(\PDOException $e) {
