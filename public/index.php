@@ -37,6 +37,8 @@ switch ($path) {
     case '/categories':
         $categoryController->showAllCategorie();
         break;
+    case '/login':
+        break;
     default:
         echo "Erreur 404";
         break;

@@ -69,4 +69,43 @@ class UserService
 
         return "Le compte " . $_POST["email"] . " a été ajouté en BDD";
     }
+
+
+
+    public function connectUser(array $post): string
+    {
+        // Test champs remplies
+        if (empty(trim($post["email"])) || empty($post["password"]))
+        {
+            return "Veuillez remplir tous les champs du formulaire";
+        }
+
+        // Test email valide
+        if (!filter_var($post["email"], FILTER_VALIDATE_EMAIL)) {
+            return "Le format de l'email est invalide";
+        }
+
+        // Get user object if exist
+        $user = $this->userRepository->findByEmail(trim($post["email"]));
+
+        if (
+            $user == null
+            || !password_verify($post["password"], $user->getPassword())
+        ) {
+            return "Email ou mot de passe incorrect";
+        }
+
+        // Initialisation de la session utilisateur
+        session_regenerate_id(true);
+
+        $_SESSION["user"] = [
+            "id"=>$user->getId(), 
+            "firstname"=>$user->getFirstname(), 
+            "lastname"=>$user->getLastname(), 
+            "email"=>$user->getEmail(), 
+            "grant"=>$user->getGrant()
+        ];
+
+        return "Connexion réussie";
+    }
 }

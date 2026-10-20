@@ -24,4 +24,21 @@ class UserController extends AbstractController
         //retourne la vue 
         return $this->render('register', 'Inscription', $data ?? []);
     }
+
+    public function login(): mixed
+    {
+        if (!empty($_SESSION["user"]))
+        {
+            return $this->render('home', 'Accueil');
+        }
+
+        $data = [];
+
+        if (isset($_POST["submit"]))
+        {
+            $data["msg"] = $this->userService->connectUser($_POST);
+        }
+
+        return $this->render('login', 'Connexion', $data);
+    }
 }
