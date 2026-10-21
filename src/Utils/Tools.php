@@ -15,7 +15,7 @@ class Tools
     public static function sanitizeArray(array &$data): void
     {
         foreach ($data as $key => $value) {
-            if (!gettype($value) == 'array') {
+            if (!is_array($value)) {
                 $data[$key] = self::sanitize($value);
             }
         }

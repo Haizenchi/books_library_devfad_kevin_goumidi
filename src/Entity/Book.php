@@ -147,19 +147,24 @@ class Book
         //Set des autres attributs
         $newBook->setId($book["id_book"] ?? null);
         $newBook->setCover($book["cover"] ?? null);
-        $newBook->setCreatedAt(new \DateTimeImmutable($book["created_at"]) ?? null);
-        $newBook->setUpdatedAt(new \DateTimeImmutable($book["updated_at"]) ?? null);
-
+        isset($book["created_at"]) ?
+            $newBook->setCreatedAt(new \DateTimeImmutable($book["created_at"])) :
+            null;
+        isset($book["updated_at"]) ? 
+            $newBook->setCreatedAt(new \DateTimeImmutable($book["created_at"])) : 
+            null;
         //Assignation des categories
-        foreach ($book["categories"] as $category) {
-            //Création de la catégorie
-            $newCategory = new Category($category["category_name"] ?? null);
-            //Set de l'id
-            $newCategory->setId($category["id_category"] ?? null);
-            //Ajout à la collection de catégories
-            $newBook->addCategory($newCategory);
+        if (isset($book["categories"])) {
+            
+            foreach ($book["categories"] as $category) {
+                //Création de la catégorie
+                $newCategory = new Category($category["category_name"] ?? null);
+                //Set de l'id
+                $newCategory->setId($category["id_category"] ?? null);
+                //Ajout à la collection de catégories
+                $newBook->addCategory($newCategory);
+            }
         }
-
         //Retour de l'objet Book
         return $newBook;
     }

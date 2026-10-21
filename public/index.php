@@ -17,11 +17,13 @@ $dotenv->load();
 use App\Controller\HomeController;
 use App\Controller\CategoryController;
 use App\Controller\UserController;
+use App\Controller\BookController;
 
 //instancier les controllers
 $homeController = new HomeController();
 $categoryController = new CategoryController();
 $userController = new UserController();
+$bookController = new BookController();
 
 //test des valeurs du path
 switch ($path) {
@@ -42,6 +44,9 @@ switch ($path) {
         break;
     case '/categories':
         $categoryController->showAllCategorie();
+        break;
+    case '/book/new':
+        $bookController->addBook();
         break;
     default:
         echo "Erreur 404";
