@@ -79,6 +79,7 @@ class UserService
 
         //Nettoyage des entrées utilisateurs
         Tools::sanitizeArray($_POST);
+
         //Test si le mail est valide
         if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
             return "Le format de l’email est invalide.";
@@ -108,7 +109,20 @@ class UserService
             "email"=> $user->getEmail(),
             "grant"=> $user->getGrant() ?? ""
         ];
-
+        header("Refresh:2; url=/");
         return "Connexion réussie";
+    }
+
+    /**
+     * Méthode pour se déconnecter
+     */
+    public function disconnect(): void 
+    {
+        //Supprimer la session
+        session_destroy();
+        //supprime le cookie dans le navigateur
+        unset($_COOKIE["PHPSESSID"]);
+        //Redirection vers home
+        header('Location:/');
     }
 }

@@ -17,6 +17,10 @@ class UserController extends AbstractController
 
     public function register(): mixed
     {
+        //redirection vers accueil si connecté
+        if (isset($_SESSION["user"])) {
+            header('Location:/');
+        }
         //Tester si le formulaire est soumis
         if (isset($_POST["submit"])) {
             $data["msg"] = $this->userService->insertUser();
@@ -27,6 +31,11 @@ class UserController extends AbstractController
 
     public function login():mixed 
     {
+        //redirection vers accueil si connecté
+        if (isset($_SESSION["user"])) {
+            header('Location:/');
+        }
+
         //Test si le formulaire est soumis
         if (isset($_POST["submit"])) {
             //Traitement de la connexion
@@ -34,5 +43,10 @@ class UserController extends AbstractController
         }
         //Retourne la vue
         return $this->render('login', 'Connexion', $data ?? []);
+    }
+
+    public function logout(): void 
+    {
+        $this->userService->disconnect();
     }
 }
