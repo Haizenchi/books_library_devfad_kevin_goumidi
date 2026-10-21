@@ -89,7 +89,7 @@ class UserService
         $user = $this->userRepository->findByEmail(trim($post["email"]));
 
         if (
-            $user == null
+            !$user
             || !password_verify($post["password"], $user->getPassword())
         ) {
             return "Email ou mot de passe incorrect";
@@ -99,11 +99,11 @@ class UserService
         session_regenerate_id(true);
 
         $_SESSION["user"] = [
-            "id"=>$user->getId(), 
-            "firstname"=>$user->getFirstname(), 
-            "lastname"=>$user->getLastname(), 
-            "email"=>$user->getEmail(), 
-            "grant"=>$user->getGrant()
+            "id"=> $user->getId(), 
+            "firstname"=> $user->getFirstname(), 
+            "lastname"=> $user->getLastname(), 
+            "email"=> $user->getEmail(), 
+            "grant"=> $user->getGrant() ?? ""
         ];
 
         return "Connexion réussie";

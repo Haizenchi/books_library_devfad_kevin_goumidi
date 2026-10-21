@@ -74,4 +74,13 @@ abstract class AbstractController
 
         return !empty($token) && !empty($sessionToken) && hash_equals($sessionToken, $token);
     }
+
+    public static function isConnected(): void
+    {
+        if (isset($_SESSION["user"]))
+        {
+            // return $this->render('home', 'Accueil');
+            header('Location:/');
+        }
+    }
 }
