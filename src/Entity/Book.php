@@ -7,14 +7,14 @@ use App\Entity\Category;
 class Book
 {
     //Attributs
-    private ?int $id;
+    private ?int $id = null;
     private ?string $title;
     private ?string $content;
     private ?\DateTimeImmutable $publishAt;
     private ?string $author;
-    private ?string $cover;
+    private ?string $cover = null;
     private ?\DateTimeImmutable $createdAt;
-    private ?\DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
     private array $categories;
 
     //Constructeur

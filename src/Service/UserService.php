@@ -100,7 +100,7 @@ class UserService
 
         //Renouvellement de l'id de session
         session_regenerate_id(true);
-
+    
         //Création de la super globale de session
         $_SESSION["user"] = [
             "id"=> $user->getId(),
@@ -108,7 +108,7 @@ class UserService
             "lastname"=> $user->getLastname(),
             "email"=> $user->getEmail(),
             "grant"=> $user->getGrant() ?? ""
-        ];
+        ];        
         header("Refresh:2; url=/");
         return "Connexion réussie";
     }
