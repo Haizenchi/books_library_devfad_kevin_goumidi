@@ -88,7 +88,7 @@ class BookService
         if (isset($_FILES["cover"])) {
             $tmp_name = $_FILES["cover"]["tmp_name"];
             $name_file = $_FILES["cover"]["name"];
-            $upload_path = "assets/img/";
+            $upload_path = "assets/img/cover/";
             //récupération de l'extension
             $ext = $this->getFileExtension($name_file);
             //renommer le fichier
