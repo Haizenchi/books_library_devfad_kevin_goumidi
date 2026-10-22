@@ -13,13 +13,16 @@
     <?php include 'component/navbar.php'; ?>
     <main class="container-fluid">
         <h1>Ajouter un livre</h1>
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             <input type="text" name="title" placeholder="saisir le titre">
             <textarea name="content" placeholder="saisir le résumé"></textarea>
             <label for="publish_at">Saisir le date de publication
                 <input type="date" name="publish_at">
             </label>
             <input type="text" name="author" placeholder="saisir le nom de l'auteur">
+            <label for="cover"> Importer une image de couverture
+            <input type="file" name="cover">
+            </label>
             <select name="categories[]" multiple size="4">
                 <option disabled>
                     Selectionner les categories ...
