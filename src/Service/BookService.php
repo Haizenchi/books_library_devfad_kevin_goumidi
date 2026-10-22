@@ -23,13 +23,16 @@ class BookService
             empty($_POST["content"]) ||
             empty($_POST["publish_at"]) ||
             empty($_POST["author"])
-
         ) {
             return "Veuillez remplir tous les champs du formulaire";
         }
 
-        Tools::sanitizeArray($_POST);
-
+        //Tools::sanitizeArray($_POST);
+        $_POST["title"] = trim($_POST["title"]);
+        $_POST["content"] = trim($_POST["content"]);
+        $_POST["publish_at"] = trim($_POST["publish_at"]);
+        $_POST["author"] = trim($_POST["author"]);
+ 
         //Validation des tailles d'input
         if (strlen($_POST["title"]) > 50) {
             return "la taille du titre est trop importante";
@@ -42,7 +45,6 @@ class BookService
         if (strlen($_POST["author"]) > 100) {
             return "la taille de l'auteur est trop importante";
         }
-
 
         //Validation de la date
         if (!preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/D', $_POST["publish_at"])) {
