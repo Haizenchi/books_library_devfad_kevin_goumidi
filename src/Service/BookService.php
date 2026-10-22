@@ -63,7 +63,10 @@ class BookService
 
         //Hydratation en objet Book
         $book = Book::hydrate($_POST);
-
+        
+        //set du nom du fichier
+        $book->setCover($this->uploadFile());
+        
         //Ajout du livre en BDD
         $newBook = $this->bookRepository->create($book);
 
@@ -78,5 +81,18 @@ class BookService
         }
 
         return "Le livre : " . $newBook->getTitle() . " a été ajouté avec succès";
+    }
+
+    private function uploadFile(): ?string 
+    {
+        if (isset($_FILES["cover"])) {
+            $tmp_name = $_FILES["cover"]["tmp_name"];
+            $name_file = $_FILES["cover"]["name"];
+            $upload_path = "assets/img/";
+            //Déplacement du fichier aprés upload
+            move_uploaded_file($tmp_name, $upload_path . $name_file);
+            return $name_file;
+        }
+        return null;
     }
 }
