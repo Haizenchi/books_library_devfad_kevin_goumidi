@@ -27,7 +27,7 @@ class BookRepository
             $stmt->execute();
             $id = $this->connexion->lastInsertId();
             $book->setId($id);
-        } catch(\PDOException $e) {
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             error_log($e->getMessage());
             return null;
@@ -38,20 +38,18 @@ class BookRepository
     public function assignCategoryToBook(Book $book): ?Book
     {
         try {
-            foreach ($book->getCategories() as $category) 
-            {
+            foreach ($book->getCategories() as $category) {
                 $sql = "INSERT INTO book_category(id_book,id_category) VALUE (?,?)";
                 $stmt = $this->connexion->prepare($sql);
                 $stmt->bindValue(1, $book->getId(), \PDO::PARAM_INT);
                 $stmt->bindValue(2, $category->getId(), \PDO::PARAM_INT);
                 $stmt->execute();
             }
-        } catch(\PDOException $e) {
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             error_log($e->getMessage());
             return null;
         }
         return $book;
     }
-
 }
