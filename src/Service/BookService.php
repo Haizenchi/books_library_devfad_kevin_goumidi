@@ -63,14 +63,7 @@ class BookService
 
         //Hydratation en objet Book
         $book = Book::hydrate($_POST);
-        //ou création d'un objet
-        //$book = new Book(
-        //          $_POST["title"], 
-        //          $_POST["content"], 
-        //          $_POST["publish_at"], 
-        //          $_POST["author"]
-        //      );
-        
+
         //Ajout du livre en BDD
         $newBook = $this->bookRepository->create($book);
 
@@ -79,6 +72,11 @@ class BookService
             return "Le livre n’a pas pu être ajouté";
         }
         
+        //ajout des categories si elles ont été ajouté 
+        if (!empty($book->getCategories())) {
+            $this->bookRepository->assignCategoryToBook($newBook);
+        }
+
         return "Le livre : " . $newBook->getTitle() . " a été ajouté avec succès";
     }
 }

@@ -153,18 +153,16 @@ class Book
         isset($book["updated_at"]) ? 
             $newBook->setCreatedAt(new \DateTimeImmutable($book["created_at"])) : 
             null;
-        //Assignation des categories
-        if (isset($book["categories"])) {
-            
-            foreach ($book["categories"] as $category) {
-                //Création de la catégorie
-                $newCategory = new Category($category["category_name"] ?? null);
-                //Set de l'id
-                $newCategory->setId($category["id_category"] ?? null);
-                //Ajout à la collection de catégories
-                $newBook->addCategory($newCategory);
-            }
+        
+        foreach ($book["categories"] ?? [] as $category) {
+            //Création de la catégorie
+            $newCategory = new Category($category ?? $category["category_name"] ?? null);
+            //Set de l'id
+            $newCategory->setId($category ?? $category["id_category"] ?? null);
+            //Ajout à la collection de catégories
+            $newBook->addCategory($newCategory);
         }
+        
         //Retour de l'objet Book
         return $newBook;
     }
