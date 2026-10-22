@@ -20,7 +20,7 @@
             <input type="text" name="author" placeholder="saisir le nom de l'auteur">
             <input type="submit" value="Inscription" name="submit">
         </form>
-        <p><?= $data["msg"] ?? "" ?></p>
+        <p><?= htmlspecialchars($data["msg"] ?? "", ENT_QUOTES, 'UTF-8') ?></p>
     </main>
 </body>
 </html>
