@@ -16,17 +16,17 @@
         <form action="" method="post">
             <input type="text" name="category_name" placeholder="Saisir le nom de la categorie">
             <!-- Block erreur de validation -->
-            <?php foreach ($data[0]["validation"] ?? [] as $property => $violations): ?>
+            <?php foreach ($data["validation"] ?? [] as $property => $violations): ?>
                 <?php foreach ($violations as $error) : ?>
-                    <p><?=  $error->message ?></p>
+                    <p><?=  htmlspecialchars($error->message ,  ENT_QUOTES, 'UTF-8') ?></p>
                 <?php endforeach ?>
             <?php endforeach ?>
             <input type="submit" value="Ajouter" name="submit">
         </form>
         <!--Block erreur -->
-        <p><?= $data[0]["error"] ?? "" ?></p>
+        <p><?= htmlspecialchars($data["error"] ?? "",  ENT_QUOTES, 'UTF-8') ?></p>
         <!--Block succes -->
-        <p><?= $data[0]["success"] ?? "" ?></p>
+        <p><?= htmlspecialchars($data["success"] ?? "",  ENT_QUOTES, 'UTF-8') ?></p>
     </main>
 </body>
 

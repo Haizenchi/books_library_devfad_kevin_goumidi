@@ -16,7 +16,11 @@
 				<li><a href="/category/new">Ajouter une catégorie</a></li>
 				<li><a href="/book/new">Ajouter un livre</a></li>
 			<?php endif ?>
-				<?= htmlspecialchars($_SESSION["user"]["firstname"] . " connecté ",  ENT_QUOTES, 'UTF-8') ?>
+			<!-- Route User -->
+			<?php if (($_SESSION["user"]["grant"] ?? '') === 'ROLE_USER') : ?>
+
+			<?php endif ?>
+			<?= htmlspecialchars($_SESSION["user"]["firstname"] . " connecté ",  ENT_QUOTES, 'UTF-8') ?>
 			<li><a href="/logout">Déconnexion</a></li>
 		<?php endif ?>
 	</ul>

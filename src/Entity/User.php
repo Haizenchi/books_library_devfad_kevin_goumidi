@@ -148,7 +148,7 @@ class User
         $newUser->setCreatedAt(new \DateTimeImmutable($user["created_at"] ?? "") ?? null);
         $newUser->setUpdatedAt(new \DateTimeImmutable($user["updated_at"] ?? "") ?? null);
         $newUser->setImgProfil($user["img_profil"] ?? null);
-        $newUser->setGrant($user["grant"] ?? null);
+        $newUser->setGrant("ROLE_USER");
         
         //Retourne l'objet User
         return $newUser;

@@ -19,7 +19,7 @@
             <input type="password" name="confirm-password" placeholder="saisir le mot de passe">
             <input type="submit" value="Inscription" name="submit">
         </form>
-        <p><?= $data["msg"] ?? "" ?></p>
+        <p><?= htmlspecialchars($data["msg"] ?? "", ENT_QUOTES, 'UTF-8') ?></p>
     </main>
 </body>
 </html>
