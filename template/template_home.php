@@ -12,7 +12,7 @@
 <body>
     <?php include 'component/navbar.php'; ?>
         
-    <img src="/assets/img/cover.jpg" alt="image">
+    <!-- <img src="/assets/img/cover.jpg" alt="image"> -->
     <main class="container-fluid">
         <h1>Bienvenue sur Book Library</h1>
     </main>

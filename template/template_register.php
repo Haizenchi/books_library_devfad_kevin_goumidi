@@ -11,9 +11,11 @@
     <?php include 'component/navbar.php'; ?>
     <main class="container-fluid">
         <h1>S'inscrire</h1>
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             <input type="text" name="firstname" placeholder="saisir votre Prénom">
             <input type="text" name="lastname" placeholder="saisir votre Nom">
+            <label for="cover"> Importer une photo de profil</label>
+            <input type="file" name="img_profil">
             <input type="text" name="email" placeholder="saisir votre Email">
             <input type="password" name="password" placeholder="saisir le mot de passe">
             <input type="password" name="confirm-password" placeholder="saisir le mot de passe">
