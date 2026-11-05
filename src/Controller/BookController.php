@@ -43,4 +43,18 @@ class BookController extends AbstractController
 
         return $this->render('add_book', 'Ajouter un livre', $data ?? []);
     }
+
+    public function showAllBooks(): mixed 
+    {
+        //Test si non connecté
+        if (!isset($_SESSION["user"]["id"])) {
+            //redirection vers la route de connexion
+            header('Location:/login');
+            exit;
+        }
+
+        $books = $this->bookService->getAllbooks();
+        
+        return $this->render('show_all_books', 'liste des livres', $books);
+    }
 }

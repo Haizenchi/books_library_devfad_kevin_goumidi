@@ -48,6 +48,9 @@ switch ($path) {
     case '/book/new':
         $bookController->addBook();
         break;
+    case '/books':
+        $bookController->showAllBooks();
+        break;
     default:
         echo "Erreur 404";
         break;

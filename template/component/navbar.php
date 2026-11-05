@@ -21,6 +21,7 @@
 
 			<?php endif ?>
 			<?= htmlspecialchars($_SESSION["user"]["firstname"] . " connecté ",  ENT_QUOTES, 'UTF-8') ?>
+			<li><a href="/books">Afficher les livres</a></li>
 			<li><a href="/logout">Déconnexion</a></li>
 		<?php endif ?>
 	</ul>

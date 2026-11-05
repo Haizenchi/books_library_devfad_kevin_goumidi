@@ -85,4 +85,9 @@ class BookService
         
         return $errors;
     }
+
+    public function getAllbooks(): array 
+    {
+        return $this->bookRepository->findAllBooks();
+    }
 }
